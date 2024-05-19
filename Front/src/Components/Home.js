@@ -1,11 +1,54 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Login from "./Login";
-import { useSelector } from "react-redux";
-const Home = () => {
-  const logg = useSelector((state) => state.user.log.log);
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { setproducts } from "./Features/dataslice";
 
-  console.log(logg);
+const Home = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [categ, setCategory] = useState(null);
+  const logg = useSelector((state) => state.user.log.log);
+  console.log(categ);
+  const handleData = (x) => {
+    axios
+      .get(`http://localhost:7000/getAllProductByCategory/${x}`)
+      .then((response) => {
+        console.log(response.data);
+        dispatch(setproducts(response.data));
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleFilter = (category) => {
+    setCategory(category);
+    handleData(category);
+    navigate("/products");
+  };
+
+  const categories = [
+    {
+      name: "Women",
+      description: "Best Clothes For Women",
+      imgSrc: "assets/images/baner-right-image-01.jpg",
+    },
+    {
+      name: "Men",
+      description: "Best Clothes For Men",
+      imgSrc: "assets/images/baner-right-image-02.jpg",
+    },
+    {
+      name: "Kids",
+      description: "Best Clothes For Kids",
+      imgSrc: "assets/images/baner-right-image-03.jpg",
+    },
+    {
+      name: "Accessories",
+      description: "Best Trend Accessories",
+      imgSrc: "assets/images/baner-right-image-04.jpg",
+    },
+  ];
+
   return (
     <div>
       <div className="main-banner" id="top">
@@ -16,7 +59,6 @@ const Home = () => {
                 <div className="thumb">
                   <div className="inner-content">
                     <h4>We Are Hexashop</h4>
-
                     <div className="main-border-button">
                       <Link to="">Purchase Now!</Link>
                     </div>
@@ -28,110 +70,38 @@ const Home = () => {
             <div className="col-lg-6">
               <div className="right-content">
                 <div className="row">
-                  <div className="col-lg-6">
-                    <div className="right-first-image">
-                      <div className="thumb">
-                        <div className="inner-content">
-                          <h4>Women</h4>
-                          <span>Best Clothes For Women</span>
-                        </div>
-                        <div className="hover-content">
-                          <div className="inner">
-                            <h4>Women</h4>
-                            <p>
-                              Lorem ipsum dolor sit amet, conservisii ctetur
-                              adipiscing elit incid.
-                            </p>
-                            <div className="main-border-button">
-                              <Link to="#">Discover More</Link>
+                  {categories.map((category, index) => (
+                    <div className="col-lg-6" key={index}>
+                      <div className="right-first-image">
+                        <div className="thumb">
+                          <div className="inner-content">
+                            <h4>{category.name}</h4>
+                            <span>{category.description}</span>
+                          </div>
+                          <div className="hover-content">
+                            <div className="inner">
+                              <h4>{category.name}</h4>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit.
+                              </p>
+                              <div
+                                className="main-border-button"
+                                onClick={() =>
+                                  handleFilter(
+                                    category.name.toLocaleLowerCase()
+                                  )
+                                }
+                              >
+                                <Link to="#">Discover More</Link>
+                              </div>
                             </div>
                           </div>
+                          <img src={category.imgSrc} alt="" />
                         </div>
-                        <img
-                          src="assets/images/baner-right-image-01.jpg"
-                          alt=""
-                        />
                       </div>
                     </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="right-first-image">
-                      <div className="thumb">
-                        <div className="inner-content">
-                          <h4>Men</h4>
-                          <span>Best Clothes For Men</span>
-                        </div>
-                        <div className="hover-content">
-                          <div className="inner">
-                            <h4>Men</h4>
-                            <p>
-                              Lorem ipsum dolor sit amet, conservisii ctetur
-                              adipiscing elit incid.
-                            </p>
-                            <div className="main-border-button">
-                              <Link to="#">Discover More</Link>
-                            </div>
-                          </div>
-                        </div>
-                        <img
-                          src="assets/images/baner-right-image-02.jpg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="right-first-image">
-                      <div className="thumb">
-                        <div className="inner-content">
-                          <h4>Kids</h4>
-                          <span>Best Clothes For Kids</span>
-                        </div>
-                        <div className="hover-content">
-                          <div className="inner">
-                            <h4>Kids</h4>
-                            <p>
-                              Lorem ipsum dolor sit amet, conservisii ctetur
-                              adipiscing elit incid.
-                            </p>
-                            <div className="main-border-button">
-                              <Link to="#">Discover More</Link>
-                            </div>
-                          </div>
-                        </div>
-                        <img
-                          src="assets/images/baner-right-image-03.jpg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="right-first-image">
-                      <div className="thumb">
-                        <div className="inner-content">
-                          <h4>Accessories</h4>
-                          <span>Best Trend Accessories</span>
-                        </div>
-                        <div className="hover-content">
-                          <div className="inner">
-                            <h4>Accessories</h4>
-                            <p>
-                              Lorem ipsum dolor sit amet, conservisii ctetur
-                              adipiscing elit incid.
-                            </p>
-                            <div className="main-border-button">
-                              <Link to="#">Discover More</Link>
-                            </div>
-                          </div>
-                        </div>
-                        <img
-                          src="assets/images/baner-right-image-04.jpg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -176,7 +146,7 @@ const Home = () => {
                   great website. Thank you.
                 </p>
                 <div className="main-border-button">
-                  <Link to="">Discover More</Link>
+                  <Link to="#">Discover More</Link>
                 </div>
               </div>
             </div>
@@ -211,92 +181,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* <section className="section" id="social">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="section-heading">
-                <h2>Social Media</h2>
-                <span>
-                  Details to details is what makes Hexashop different from the
-                  other themes.
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="container">
-          <div className="row images">
-            <div className="col-2">
-              <div className="thumb">
-                <div className="icon">
-                  <a href="http://instagram.com">
-                    <h6>Fashion</h6>
-                    <i className="fa fa-instagram"></i>
-                  </a>
-                </div>
-                <img src="assets/images/instagram-01.jpg" alt="" />
-              </div>
-            </div>
-            <div className="col-2">
-              <div className="thumb">
-                <div className="icon">
-                  <a href="http://instagram.com">
-                    <h6>New</h6>
-                    <i className="fa fa-instagram"></i>
-                  </a>
-                </div>
-                <img src="assets/images/instagram-02.jpg" alt="" />
-              </div>
-            </div>
-            <div className="col-2">
-              <div className="thumb">
-                <div className="icon">
-                  <a href="http://instagram.com">
-                    <h6>Brand</h6>
-                    <i className="fa fa-instagram"></i>
-                  </a>
-                </div>
-                <img src="assets/images/instagram-03.jpg" alt="" />
-              </div>
-            </div>
-            <div className="col-2">
-              <div className="thumb">
-                <div className="icon">
-                  <a href="http://instagram.com">
-                    <h6>Makeup</h6>
-                    <i className="fa fa-instagram"></i>
-                  </a>
-                </div>
-                <img src="assets/images/instagram-04.jpg" alt="" />
-              </div>
-            </div>
-            <div className="col-2">
-              <div className="thumb">
-                <div className="icon">
-                  <a href="http://instagram.com">
-                    <h6>Leather</h6>
-                    <i className="fa fa-instagram"></i>
-                  </a>
-                </div>
-                <img src="assets/images/instagram-05.jpg" alt="" />
-              </div>
-            </div>
-            <div className="col-2">
-              <div className="thumb">
-                <div className="icon">
-                  <a href="http://instagram.com">
-                    <h6>Bag</h6>
-                    <i className="fa fa-instagram"></i>
-                  </a>
-                </div>
-                <img src="assets/images/instagram-06.jpg" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
 
       {!logg && (
         <div className="subscribe">
