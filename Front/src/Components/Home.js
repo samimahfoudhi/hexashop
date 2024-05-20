@@ -60,7 +60,7 @@ const Home = () => {
                   <div className="inner-content">
                     <h4>We Are Hexashop</h4>
                     <div className="main-border-button">
-                      <Link to="">Purchase Now!</Link>
+                      <Link to="/products">Purchase Now!</Link>
                     </div>
                   </div>
                   <img src="assets/images/left-banner-image.jpg" alt="" />
@@ -81,10 +81,7 @@ const Home = () => {
                           <div className="hover-content">
                             <div className="inner">
                               <h4>{category.name}</h4>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit.
-                              </p>
+                              <p>{category.description}</p>
                               <div
                                 className="main-border-button"
                                 onClick={() =>

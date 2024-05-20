@@ -1,16 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./Features/useSlice";
+import { setproducts } from "./Features/dataslice";
+import axios from "axios";
 const Navbar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogOut = () => {
     return dispatch(setUser({ data: {}, log: false }));
   };
+  const brands = ["Nike", "Adidas", "Puma", "Rebook", "Autres"];
   const log = useSelector((state) => state.user.log.log);
   const role = useSelector((state) => state.user.data.data.role);
-  console.log(log);
-  console.log(role);
+  const [brand, setBrand] = useState(null);
+  const handleData = (x) => {
+    axios
+      .get(`http://localhost:7000/getAllProductsByBrand/${x}`)
+      .then((response) => {
+        dispatch(setproducts(response.data));
+      })
+      .catch((err) => console.log(err));
+  };
+  const filterByBrand = (brand) => {
+    setBrand(brand);
+    handleData(brand);
+    navigate("/productsCategory");
+  };
   return (
     <header className="header-area header-sticky">
       <div className="container">
@@ -34,30 +50,20 @@ const Navbar = () => {
                 <li className="scroll-to-section">
                   <Link to="/products">Our collection</Link>
                 </li>
-                {/* <li className="scroll-to-section">
-                  <Link to="/products">Women's</Link>
-                </li>
-                <li className="scroll-to-section">
-                  <Link to="/products">Kid's</Link>
-                </li> */}
+
                 <li className="submenu">
                   <Link to="#">Marques</Link>
                   <ul>
-                    <li>
-                      <Link to="">Nike</Link>
-                    </li>
-                    <li>
-                      <Link to="">Adidas</Link>
-                    </li>
-                    <li>
-                      <Link to="">Puma</Link>
-                    </li>
-                    <li>
-                      <Link to="">Rebook</Link>
-                    </li>
-                    <li>
-                      <Link to="">Autres</Link>
-                    </li>
+                    {brands.map((item, index) => (
+                      <li
+                        key={index}
+                        onClick={() => {
+                          filterByBrand(item.toLowerCase());
+                        }}
+                      >
+                        <Link to="">{item}</Link>
+                      </li>
+                    ))}
                   </ul>
                 </li>
 
