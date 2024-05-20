@@ -23,7 +23,7 @@ const Home = () => {
   const handleFilter = (category) => {
     setCategory(category);
     handleData(category);
-    navigate("/products");
+    navigate("/productsCategory");
   };
 
   const categories = [

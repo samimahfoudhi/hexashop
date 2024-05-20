@@ -71,14 +71,11 @@ const Footer = () => {
               <li>
                 <Link to="#">Shipping</Link>
               </li>
-              <li>
-                <Link to="#">Tracking ID</Link>
-              </li>
             </ul>
           </div>
           <div className="col-lg-12">
             <div className="under-footer">
-              <p>Copyright © 2022 HexaShop Co., Ltd. All Rights Reserved.</p>
+              <p>Copyright © 2024 HexaShop. All Rights Reserved.</p>
               <ul>
                 <li>
                   <Link to="#">

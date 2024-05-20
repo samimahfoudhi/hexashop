@@ -9,6 +9,7 @@ import Oneproduct from "./Components/Oneproduct";
 import Contact from "./Components/Contact";
 import Cart from "./Components/Cart";
 import Register from "./Components/Register";
+import ProductsCategory from "./Components/ProductsCategory";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/products" element={<Products />} />
+        <Route exact path="/productsCategory" element={<ProductsCategory />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/productDetails" element={<Oneproduct />} />
         <Route exact path="/contact" element={<Contact />} />
