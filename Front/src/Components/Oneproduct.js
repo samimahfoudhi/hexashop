@@ -22,7 +22,9 @@ const Oneproduct = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-8">
-              <div className="left-images">{product.image}</div>
+              <div className="left-images">
+                <img src={product.image} alt="" />
+              </div>
             </div>
             <div className="col-lg-4">
               <div className="right-content">

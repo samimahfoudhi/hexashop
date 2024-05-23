@@ -19,7 +19,11 @@ const Login = () => {
         if (response.data.message === "Login successful") {
           dispatch(
             setUser({
-              data: { email: email, role: response.data.user.role },
+              data: {
+                email: email,
+                role: response.data.user.role,
+                id: response.data.user.id,
+              },
               log: true,
             })
           );

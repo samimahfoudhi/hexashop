@@ -105,7 +105,75 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {!logg && (
+        <div className="subscribe">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-8">
+                <div className="section-heading">
+                  <h2>
+                    En vous abonnant à notre site, vous bénéficiez d'avantages
+                    exclusifs
+                  </h2>
+                  <span>
+                    Details to details is what makes Hexashop different from the
+                    other themes.
+                  </span>
+                </div>
+                <section id="login-section">
+                  <Login />
+                </section>
+              </div>
 
+              <div className="col-lg-4">
+                <div className="row">
+                  <div className="col-6">
+                    <ul>
+                      <li>
+                        Store Location:
+                        <br />
+                        <span>Sunny Isles Beach, FL 33160, United States</span>
+                      </li>
+                      <li>
+                        Phone:
+                        <br />
+                        <span>010-020-0340</span>
+                      </li>
+                      <li>
+                        Office Location:
+                        <br />
+                        <span>North Miami Beach</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col-6">
+                    <ul>
+                      <li>
+                        Work Hours:
+                        <br />
+                        <span>07:30 AM - 9:30 PM Daily</span>
+                      </li>
+                      <li>
+                        Email:
+                        <br />
+                        <span>info@company.com</span>
+                      </li>
+                      <li>
+                        Social Media:
+                        <br />
+                        <span>
+                          <Link to="#">Facebook</Link>,{" "}
+                          <Link to="#">Instagram</Link>,
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <section className="section" id="explore">
         <div className="container">
           <div className="row">
@@ -178,76 +246,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {!logg && (
-        <div className="subscribe">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-8">
-                <div className="section-heading">
-                  <h2>
-                    En vous abonnant à notre site, vous bénéficiez d'avantages
-                    exclusifs
-                  </h2>
-                  <span>
-                    Details to details is what makes Hexashop different from the
-                    other themes.
-                  </span>
-                </div>
-                <section id="login-section">
-                  <Login />
-                </section>
-              </div>
-
-              <div className="col-lg-4">
-                <div className="row">
-                  <div className="col-6">
-                    <ul>
-                      <li>
-                        Store Location:
-                        <br />
-                        <span>Sunny Isles Beach, FL 33160, United States</span>
-                      </li>
-                      <li>
-                        Phone:
-                        <br />
-                        <span>010-020-0340</span>
-                      </li>
-                      <li>
-                        Office Location:
-                        <br />
-                        <span>North Miami Beach</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="col-6">
-                    <ul>
-                      <li>
-                        Work Hours:
-                        <br />
-                        <span>07:30 AM - 9:30 PM Daily</span>
-                      </li>
-                      <li>
-                        Email:
-                        <br />
-                        <span>info@company.com</span>
-                      </li>
-                      <li>
-                        Social Media:
-                        <br />
-                        <span>
-                          <Link to="#">Facebook</Link>,{" "}
-                          <Link to="#">Instagram</Link>,
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

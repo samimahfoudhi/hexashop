@@ -43,7 +43,7 @@ const Cart = () => {
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row border-top border-bottom">
             <div className="row main align-items-center">
               <div className="col-2">
                 <img
