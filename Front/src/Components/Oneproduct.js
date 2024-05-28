@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Oneproduct = () => {
   const product = useSelector((state) => state.product.data);
+  const userId = useSelector((state) => state.user.id);
+  console.log(userId);
   console.log(product);
   return (
     <div>
@@ -23,6 +25,7 @@ const Oneproduct = () => {
           <div className="row">
             <div className="col-lg-8">
               <div className="left-images">
+                {" "}
                 <img src={product.image} alt="" />
               </div>
             </div>

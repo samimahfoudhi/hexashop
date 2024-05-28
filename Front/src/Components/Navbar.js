@@ -12,7 +12,8 @@ const Navbar = () => {
   };
   const brands = ["Nike", "Adidas", "Puma", "Rebook", "Autres"];
   const log = useSelector((state) => state.user.log.log);
-  const role = useSelector((state) => state.user.data.data.role);
+  const role = useSelector((state) => state.user.data?.data?.role);
+  console.log(role);
   const [brand, setBrand] = useState(null);
   const handleData = (x) => {
     axios

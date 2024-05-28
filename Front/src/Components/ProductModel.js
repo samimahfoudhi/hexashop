@@ -16,7 +16,12 @@ const ProductModel = (props) => {
     dispatch(setProd({ ...props.e }));
     navigate("/productDetails");
   };
-
+  // const handleDelete = () => {
+  //   axios
+  //     .delete(`http://localhost:7000/deleteProduct/${props.e.id}`)
+  //     .then((response) => console.log("deleted"))
+  //     .catch((err) => console.log(err));
+  // };
   const handleDelete = () => {
     axios
       .delete(`http://localhost:7000/deleteProduct/${props.e.id}`)
