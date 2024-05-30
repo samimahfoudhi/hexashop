@@ -9,9 +9,19 @@ import axios from "axios";
 const ProductModel = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const role = useSelector((state) => state.user.data.data.role);
+  const role = useSelector((state) => state.user.data?.data?.role);
   const data = useSelector((state) => state.products.data);
-
+  const idUser = useSelector((state) => state.user.data?.data?.id);
+  const addToMyCard = () => {
+    console.log(idUser);
+    axios
+      .post("http://localhost:7000/addProductToCard", {
+        ...props.e,
+        ClientId: idUser,
+      })
+      .then((response) => console.log("done"))
+      .catch((err) => console.log(err));
+  };
   const handelView = () => {
     dispatch(setProd({ ...props.e }));
     navigate("/productDetails");
@@ -47,8 +57,8 @@ const ProductModel = (props) => {
                   <i className="fa fa-eye"></i>
                 </Link>
               </li>
-              <li>
-                <Link to="add-product-to-my-cart">
+              <li onClick={addToMyCard}>
+                <Link to="/myCard">
                   <i className="fa fa-shopping-cart"></i>
                 </Link>
               </li>

@@ -1,12 +1,12 @@
 const db = require("../models");
 
 exports.addProductToCard = (req, res) => {
-  let { name, brand, price, description, image, size, categry, ClientId } =
+  let { name, brand, price, description, image, size, category, ClientId } =
     req.body;
   db.ProductCard.create({
     name,
     brand,
-    categry,
+    category,
     price,
     description,
     image,
